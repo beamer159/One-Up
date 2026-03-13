@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bugxjy4c7wbeg"]
+
+[ext_resource type="Script" uid="uid://c6fcfksa5spka" path="res://menus/host_menu.gd" id="1_ygfy2"]
+
+[node name="HostMenu" type="VBoxContainer" unique_id=1970014482]
+offset_right = 105.0
+offset_bottom = 66.0
+script = ExtResource("1_ygfy2")
+
+[node name="Port" type="HBoxContainer" parent="." unique_id=1476698040]
+layout_mode = 2
+
+[node name="PortLabel" type="Label" parent="Port" unique_id=1453901997]
+layout_mode = 2
+text = "Port"
+
+[node name="PortInput" type="LineEdit" parent="Port" unique_id=419319080]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Actions" type="HBoxContainer" parent="." unique_id=1110482327]
+layout_mode = 2
+
+[node name="HostButton" type="Button" parent="Actions" unique_id=843637255]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Host"
+
+[node name="BackButton" type="Button" parent="Actions" unique_id=483068011]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Back"
+
+[connection signal="pressed" from="Actions/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="Actions/BackButton" to="." method="_on_back_button_pressed"]

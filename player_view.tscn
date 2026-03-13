@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://ybmxo2ru30lp"]
+
+[ext_resource type="Script" uid="uid://ccetijunjrl0w" path="res://player_view.gd" id="1_je4ro"]
+
+[node name="PlayerView" type="VBoxContainer" unique_id=949877072]
+offset_right = 37.0
+offset_bottom = 50.0
+alignment = 1
+script = ExtResource("1_je4ro")
+
+[node name="PlayerName" type="Label" parent="." unique_id=1667920398]
+unique_name_in_owner = true
+layout_mode = 2
+text = "PlayerName"
+horizontal_alignment = 1
+
+[node name="HealthValue" type="Label" parent="." unique_id=1996458]
+unique_name_in_owner = true
+layout_mode = 2
+text = "10"
+horizontal_alignment = 1

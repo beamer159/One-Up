@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://udvn1e3pyvij"]
+
+[ext_resource type="Script" uid="uid://binqsbwwh4el5" path="res://menus/main_menu.gd" id="1_8gy84"]
+
+[node name="MainMenu" type="HBoxContainer" unique_id=85059240]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_8gy84")
+
+[node name="HostButton" type="Button" parent="." unique_id=2089330349]
+layout_mode = 2
+text = "Host"
+
+[node name="JoinButton" type="Button" parent="." unique_id=1615952905]
+layout_mode = 2
+text = "Join
+"
+
+[connection signal="pressed" from="HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="JoinButton" to="." method="_on_join_button_pressed"]

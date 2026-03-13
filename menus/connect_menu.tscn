@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cks6ysyx3ej6h"]
+
+[ext_resource type="Script" uid="uid://bj4c0a8kjre2m" path="res://menus/connect_menu.gd" id="1_278a0"]
+
+[node name="ConnectMenu" type="VBoxContainer" unique_id=1965012719]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_278a0")
+
+[node name="ConnectLabel" type="Label" parent="." unique_id=912316568]
+layout_mode = 2
+text = "Waiting for opponent..."
+
+[node name="CancelButton" type="Button" parent="." unique_id=1895331294]
+layout_mode = 2
+text = "Cancel"
+
+[connection signal="pressed" from="CancelButton" to="." method="_on_cancel_button_pressed"]

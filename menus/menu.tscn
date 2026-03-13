@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dhblv5uh4gxcy"]
+
+[ext_resource type="Script" uid="uid://gxxts48ehsu2" path="res://menus/menu.gd" id="1_2d4ws"]
+[ext_resource type="PackedScene" uid="uid://udvn1e3pyvij" path="res://menus/main_menu.tscn" id="2_jayei"]
+[ext_resource type="PackedScene" uid="uid://bugxjy4c7wbeg" path="res://menus/host_menu.tscn" id="3_gduqu"]
+[ext_resource type="PackedScene" uid="uid://cf02xlehc1bch" path="res://menus/join_menu.tscn" id="4_tck7o"]
+[ext_resource type="PackedScene" uid="uid://cks6ysyx3ej6h" path="res://menus/connect_menu.tscn" id="5_jayei"]
+
+[node name="Menu" type="MarginContainer" unique_id=412398639]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_2d4ws")
+
+[node name="MainMenu" parent="." unique_id=85059240 instance=ExtResource("2_jayei")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HostMenu" parent="." unique_id=1970014482 instance=ExtResource("3_gduqu")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="JoinMenu" parent="." unique_id=692196847 instance=ExtResource("4_tck7o")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="ConnectMenu" parent="." unique_id=1965012719 instance=ExtResource("5_jayei")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[connection signal="host_selected" from="MainMenu" to="." method="_on_main_menu_host_selected"]
+[connection signal="join_selected" from="MainMenu" to="." method="_on_main_menu_join_selected"]
+[connection signal="back_selected" from="HostMenu" to="." method="_on_host_menu_back_selected"]
+[connection signal="host_selected" from="HostMenu" to="." method="_on_host_menu_host_selected"]
+[connection signal="back_selected" from="JoinMenu" to="." method="_on_join_menu_back_selected"]
+[connection signal="join_selected" from="JoinMenu" to="." method="_on_join_menu_join_selected"]
+[connection signal="canceled" from="ConnectMenu" to="." method="_on_connect_menu_canceled"]

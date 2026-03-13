@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://cf02xlehc1bch"]
+
+[ext_resource type="Script" uid="uid://cuyys0d5kkrq" path="res://menus/join_menu.gd" id="1_1lo3k"]
+
+[node name="JoinMenu" type="VBoxContainer" unique_id=692196847]
+offset_right = 137.0
+offset_bottom = 101.0
+script = ExtResource("1_1lo3k")
+
+[node name="ConnectionFields" type="GridContainer" parent="." unique_id=1857021658]
+layout_mode = 2
+columns = 2
+
+[node name="IpLabel" type="Label" parent="ConnectionFields" unique_id=1318316911]
+layout_mode = 2
+text = "IP"
+horizontal_alignment = 2
+
+[node name="IpInput" type="LineEdit" parent="ConnectionFields" unique_id=1230776125]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+placeholder_text = "127.0.0.1"
+
+[node name="PortLabel" type="Label" parent="ConnectionFields" unique_id=562110427]
+layout_mode = 2
+text = "Port"
+horizontal_alignment = 2
+
+[node name="PortInput" type="LineEdit" parent="ConnectionFields" unique_id=1589569403]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "56789"
+
+[node name="Actions" type="HBoxContainer" parent="." unique_id=1996448943]
+layout_mode = 2
+
+[node name="JoinButton" type="Button" parent="Actions" unique_id=1019665149]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Join"
+
+[node name="BackButton" type="Button" parent="Actions" unique_id=71121424]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Back"
+
+[connection signal="pressed" from="Actions/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="Actions/BackButton" to="." method="_on_back_button_pressed"]
