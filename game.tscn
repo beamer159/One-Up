@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d10bkbq86h28s" path="res://attack_selection.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://ybmxo2ru30lp" path="res://player_view.tscn" id="2_feb5d"]
 [ext_resource type="Script" uid="uid://donsojmfanfh1" path="res://player.gd" id="3_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://ber0xscfvbcss" path="res://game_over_menu.tscn" id="5_7jktm"]
 
 [sub_resource type="Resource" id="Resource_7jktm"]
 script = ExtResource("3_fc0e3")
@@ -15,7 +16,7 @@ script = ExtResource("3_fc0e3")
 name = "Opponent"
 metadata/_custom_type_script = "uid://donsojmfanfh1"
 
-[node name="Game" type="VBoxContainer" unique_id=1453948707]
+[node name="Game" type="MarginContainer" unique_id=524288610]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -23,24 +24,32 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_80nbo")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1066788689]
+[node name="GameContent" type="VBoxContainer" parent="." unique_id=1453948707]
 layout_mode = 2
 
-[node name="PlayerView" parent="HBoxContainer" unique_id=949877072 instance=ExtResource("2_feb5d")]
+[node name="HBoxContainer" type="HBoxContainer" parent="GameContent" unique_id=1066788689]
+layout_mode = 2
+
+[node name="PlayerView" parent="GameContent/HBoxContainer" unique_id=949877072 instance=ExtResource("2_feb5d")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 player = SubResource("Resource_7jktm")
 
-[node name="OpponentView" parent="HBoxContainer" unique_id=229576735 instance=ExtResource("2_feb5d")]
+[node name="OpponentView" parent="GameContent/HBoxContainer" unique_id=229576735 instance=ExtResource("2_feb5d")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 player = SubResource("Resource_fc0e3")
 
-[node name="AttackSelection" parent="." unique_id=579983540 instance=ExtResource("2_e2o6t")]
+[node name="AttackSelection" parent="GameContent" unique_id=579983540 instance=ExtResource("2_e2o6t")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 
-[connection signal="attack_selected" from="AttackSelection" to="." method="_on_attack_selection_attack_selected"]
+[node name="GameOverMenu" parent="." unique_id=922680862 instance=ExtResource("5_7jktm")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[connection signal="attack_selected" from="GameContent/AttackSelection" to="." method="_on_attack_selection_attack_selected"]

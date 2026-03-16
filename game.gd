@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends MarginContainer
 
 
 var stored_attack := 0
@@ -7,6 +7,8 @@ var stored_attack := 0
 
 
 func _ready() -> void:
+	player.lost.connect(_on_game_over)
+	opponent.lost.connect(_on_game_over)
 	if OS.is_debug_build():
 		var args := OS.get_cmdline_args()
 		if args.has("server"):
@@ -47,3 +49,7 @@ func _resolve_round(player_attack: int, opponent_attack: int) -> void:
 		player.health -= opponent_attack
 	stored_attack = 0
 	%AttackSelection.show()
+
+
+func _on_game_over() -> void:
+	%GameOverMenu.show()

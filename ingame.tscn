@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bf3r5dp4c1i11"]
+
+[node name="Ingame" type="MarginContainer" unique_id=400455251]
+offset_right = 40.0
+offset_bottom = 40.0
