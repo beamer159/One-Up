@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cks6ysyx3ej6h"]
 
-[ext_resource type="Script" uid="uid://bj4c0a8kjre2m" path="res://menus/connect_menu.gd" id="1_278a0"]
+[ext_resource type="Script" uid="uid://bj4c0a8kjre2m" path="res://src/menus/connect_menu.gd" id="1_278a0"]
 
 [node name="ConnectMenu" type="VBoxContainer" unique_id=1965012719]
 offset_right = 40.0

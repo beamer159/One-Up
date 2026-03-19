@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://dhblv5uh4gxcy"]
 
-[ext_resource type="Script" uid="uid://gxxts48ehsu2" path="res://menus/menu.gd" id="1_2d4ws"]
-[ext_resource type="PackedScene" uid="uid://udvn1e3pyvij" path="res://menus/main_menu.tscn" id="2_jayei"]
-[ext_resource type="PackedScene" uid="uid://bugxjy4c7wbeg" path="res://menus/host_menu.tscn" id="3_gduqu"]
-[ext_resource type="PackedScene" uid="uid://cf02xlehc1bch" path="res://menus/join_menu.tscn" id="4_tck7o"]
-[ext_resource type="PackedScene" uid="uid://cks6ysyx3ej6h" path="res://menus/connect_menu.tscn" id="5_jayei"]
+[ext_resource type="Script" uid="uid://gxxts48ehsu2" path="res://src/menus/menu.gd" id="1_2d4ws"]
+[ext_resource type="PackedScene" uid="uid://udvn1e3pyvij" path="res://src/menus/main_menu.tscn" id="2_jayei"]
+[ext_resource type="PackedScene" uid="uid://bugxjy4c7wbeg" path="res://src/menus/host_menu.tscn" id="3_gduqu"]
+[ext_resource type="PackedScene" uid="uid://cf02xlehc1bch" path="res://src/menus/join_menu.tscn" id="4_tck7o"]
+[ext_resource type="PackedScene" uid="uid://cks6ysyx3ej6h" path="res://src/menus/connect_menu.tscn" id="5_jayei"]
 
 [node name="Menu" type="MarginContainer" unique_id=412398639]
 offset_right = 40.0

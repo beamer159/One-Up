@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://udvn1e3pyvij"]
 
-[ext_resource type="Script" uid="uid://binqsbwwh4el5" path="res://menus/main_menu.gd" id="1_8gy84"]
+[ext_resource type="Script" uid="uid://binqsbwwh4el5" path="res://src/menus/main_menu.gd" id="1_8gy84"]
 
 [node name="MainMenu" type="HBoxContainer" unique_id=85059240]
 offset_right = 40.0

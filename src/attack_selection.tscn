@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d10bkbq86h28s"]
 
-[ext_resource type="Script" uid="uid://d13hluordfafp" path="res://attack_selection.gd" id="1_p77s7"]
+[ext_resource type="Script" uid="uid://d13hluordfafp" path="res://src/attack_selection.gd" id="1_p77s7"]
 
 [node name="AttackSelection" type="GridContainer" unique_id=579983540]
 offset_right = 40.0

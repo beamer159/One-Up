@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ber0xscfvbcss"]
 
-[ext_resource type="Script" uid="uid://iljykqknw3lo" path="res://game_over_menu.gd" id="1_14ib6"]
+[ext_resource type="Script" uid="uid://iljykqknw3lo" path="res://src/game_over_menu.gd" id="1_14ib6"]
 
 [node name="GameOverMenu" type="PanelContainer" unique_id=922680862]
 offset_right = 40.0
