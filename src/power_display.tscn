@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bq8vakof3jjy0"]
+
+[ext_resource type="Texture2D" uid="uid://c724ucjs72tb0" path="res://images/power_sheet.png" id="1_0eplu"]
+[ext_resource type="Script" uid="uid://tso7g4i2gsbi" path="res://src/power_display.gd" id="2_hgxrd"]
+
+[node name="PowerDisplay" type="Sprite2D" unique_id=1135142394]
+texture = ExtResource("1_0eplu")
+hframes = 4
+vframes = 4
+script = ExtResource("2_hgxrd")
