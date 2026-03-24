@@ -1,18 +1,18 @@
 [gd_scene format=3 uid="uid://brq5mt67bxsyg"]
 
-[ext_resource type="Script" uid="uid://bcx2cv7xj0mdp" path="res://src/game.gd" id="1_80nbo"]
-[ext_resource type="PackedScene" uid="uid://d10bkbq86h28s" path="res://src/attack_selection.tscn" id="2_e2o6t"]
-[ext_resource type="PackedScene" uid="uid://ybmxo2ru30lp" path="res://src/player_view.tscn" id="2_feb5d"]
-[ext_resource type="Script" uid="uid://donsojmfanfh1" path="res://src/player.gd" id="3_fc0e3"]
-[ext_resource type="PackedScene" uid="uid://ber0xscfvbcss" path="res://src/game_over_menu.tscn" id="5_7jktm"]
+[ext_resource type="Script" uid="uid://bcx2cv7xj0mdp" path="res://src/game_view.gd" id="1_57lcu"]
+[ext_resource type="PackedScene" uid="uid://ybmxo2ru30lp" path="res://src/player_view.tscn" id="2_jvfps"]
+[ext_resource type="Script" uid="uid://donsojmfanfh1" path="res://src/player.gd" id="3_fxyr2"]
+[ext_resource type="PackedScene" uid="uid://d10bkbq86h28s" path="res://src/attack_selection.tscn" id="4_fhpq8"]
+[ext_resource type="PackedScene" uid="uid://ber0xscfvbcss" path="res://src/game_over_menu.tscn" id="5_w611i"]
 
 [sub_resource type="Resource" id="Resource_7jktm"]
-script = ExtResource("3_fc0e3")
+script = ExtResource("3_fxyr2")
 name = "Player"
 metadata/_custom_type_script = "uid://donsojmfanfh1"
 
 [sub_resource type="Resource" id="Resource_fc0e3"]
-script = ExtResource("3_fc0e3")
+script = ExtResource("3_fxyr2")
 name = "Opponent"
 metadata/_custom_type_script = "uid://donsojmfanfh1"
 
@@ -22,7 +22,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_80nbo")
+script = ExtResource("1_57lcu")
 
 [node name="GameContent" type="VBoxContainer" parent="." unique_id=1453948707]
 layout_mode = 2
@@ -30,24 +30,24 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="GameContent" unique_id=1066788689]
 layout_mode = 2
 
-[node name="PlayerView" parent="GameContent/HBoxContainer" unique_id=949877072 instance=ExtResource("2_feb5d")]
+[node name="PlayerView" parent="GameContent/HBoxContainer" unique_id=949877072 instance=ExtResource("2_jvfps")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 player = SubResource("Resource_7jktm")
 
-[node name="OpponentView" parent="GameContent/HBoxContainer" unique_id=229576735 instance=ExtResource("2_feb5d")]
+[node name="OpponentView" parent="GameContent/HBoxContainer" unique_id=229576735 instance=ExtResource("2_jvfps")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 player = SubResource("Resource_fc0e3")
 
-[node name="AttackSelection" parent="GameContent" unique_id=579983540 instance=ExtResource("2_e2o6t")]
+[node name="AttackSelection" parent="GameContent" unique_id=579983540 instance=ExtResource("4_fhpq8")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="GameOverMenu" parent="." unique_id=922680862 instance=ExtResource("5_7jktm")]
+[node name="GameOverMenu" parent="." unique_id=922680862 instance=ExtResource("5_w611i")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2

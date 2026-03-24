@@ -11,7 +11,7 @@ signal lost
 		name = value
 		name_set.emit(name)
 
-@export var health := 10:
+@export var health := 20:
 	set(value):
 		health = maxi(0, value)
 		health_updated.emit(health)

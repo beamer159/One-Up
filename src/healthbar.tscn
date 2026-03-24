@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://b7e3klx34ilh7"]
+
+[ext_resource type="Script" uid="uid://b5c52vs6dk568" path="res://src/healthbar.gd" id="1_btrm6"]
+[ext_resource type="Texture2D" uid="uid://cy5mmch0np3fo" path="res://images/healthbar_border.png" id="2_btrm6"]
+[ext_resource type="Texture2D" uid="uid://cfhbypbuswrnn" path="res://images/healthbar_fill.png" id="2_k37sb"]
+
+[node name="Healthbar" type="MarginContainer" unique_id=1663006684]
+offset_right = 256.0
+offset_bottom = 24.0
+script = ExtResource("1_btrm6")
+side = 1
+
+[node name="Border" type="NinePatchRect" parent="." unique_id=402304718]
+layout_mode = 2
+texture = ExtResource("2_btrm6")
+patch_margin_left = 9
+patch_margin_top = 9
+patch_margin_right = 9
+patch_margin_bottom = 9
+
+[node name="Bars" type="MarginContainer" parent="." unique_id=393083509]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="DamageBar" type="TextureProgressBar" parent="Bars" unique_id=1847683308]
+unique_name_in_owner = true
+layout_mode = 2
+step = 0.0
+nine_patch_stretch = true
+stretch_margin_left = 5
+stretch_margin_top = 5
+stretch_margin_right = 5
+stretch_margin_bottom = 5
+texture_progress = ExtResource("2_k37sb")
+tint_progress = Color(0.6745098, 0.19607843, 0.19607843, 1)
+
+[node name="HealthBar" type="TextureProgressBar" parent="Bars" unique_id=1778133720]
+unique_name_in_owner = true
+layout_mode = 2
+nine_patch_stretch = true
+stretch_margin_left = 5
+stretch_margin_top = 5
+stretch_margin_right = 5
+stretch_margin_bottom = 5
+texture_progress = ExtResource("2_k37sb")
+tint_over = Color(0.79607844, 0.85882354, 0.9882353, 1)
+tint_progress = Color(0.41568628, 0.74509805, 0.1882353, 1)
