@@ -1,3 +1,4 @@
+@tool
 class_name Game extends Resource
 
 
@@ -11,11 +12,13 @@ class_name Game extends Resource
 class RoundWin extends RoundResult:
 	var player_won: bool
 	var is_one_up: bool
+	var loser_old_health: int
 	
-	func _init(p_value: int, p_player_won: bool, p_is_one_up: bool) -> void:
+	func _init(p_value: int, p_player_won: bool, p_is_one_up: bool, p_loser_old_health) -> void:
 		super(p_value)
 		player_won = p_player_won
 		is_one_up = p_is_one_up
+		loser_old_health = p_loser_old_health
 
 
 class RoundTie extends RoundResult:
@@ -24,13 +27,27 @@ class RoundTie extends RoundResult:
 
 
 var min_attack := 1
-var player_health := Globals.MAX_HEALTH:
+var _player_health := Globals.MAX_HEALTH:
 	set(value):
-		player_health = maxi(0, value)
-var opponent_health := Globals.MAX_HEALTH:
+		_player_health = maxi(0, value)
+@export_range(0, Globals.MAX_HEALTH) var player_health := Globals.MAX_HEALTH:
+	get:
+		return _player_health
 	set(value):
-		player_health = maxi(0, value)
+		_player_health = value
+		player_health_changed.emit(player_health)
+var _opponent_health := Globals.MAX_HEALTH:
+	set(value):
+		_opponent_health = maxi(0, value)
+@export_range(0, Globals.MAX_HEALTH) var opponent_health := Globals.MAX_HEALTH:
+	get:
+		return _opponent_health
+	set(value):
+		_opponent_health = value
+		opponent_health_changed.emit(opponent_health)
 
+signal player_health_changed(new_value: int)
+signal opponent_health_changed(new_value: int)
 
 func resolve_round(player_attack: int, opponent_attack: int) -> RoundResult:
 	assert(not is_over(), "resolve_round called on an ended game")
@@ -40,9 +57,9 @@ func resolve_round(player_attack: int, opponent_attack: int) -> RoundResult:
 	if result is RoundWin:
 		var damage = 2 * result.value - 1 if result.is_one_up else result.value
 		if result.player_won:
-			opponent_health -= damage
+			_opponent_health -= damage
 		else:
-			player_health -= damage
+			_player_health -= damage
 		min_attack = 1
 	elif result is RoundTie:
 		min_attack = mini(10, result.value)
@@ -55,8 +72,15 @@ func _determine_result(player_attack: int, opponent_attack: int) -> RoundResult:
 	var is_player_attack_bigger := player_attack > opponent_attack
 	var is_one_up := absi(player_attack - opponent_attack) == 1
 	var player_won := is_player_attack_bigger == is_one_up
-	var winning_attack := player_attack if player_won else opponent_attack
-	return RoundWin.new(winning_attack, player_won, is_one_up)
+	var winning_attack: int
+	var loser_health: int
+	if player_won:
+		winning_attack = player_attack
+		loser_health = opponent_health
+	else:
+		winning_attack = opponent_attack
+		loser_health = player_health
+	return RoundWin.new(winning_attack, player_won, is_one_up, loser_health)
 
 
 func is_over() -> bool:

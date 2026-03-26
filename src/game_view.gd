@@ -1,55 +1,69 @@
-extends MarginContainer
+@tool
+extends Node
 
 
-var stored_attack := 0
-@onready var player: Player = %PlayerView.player
-@onready var opponent: Player = %OpponentView.player
+@export var game: Game = Game.new()
+var player_attack := 0
+var opponent_attack := 0
+
+
+func _on_player_attack_received(p_player_attack) -> void:
+	player_attack = p_player_attack
+	if opponent_attack > 0:
+		_resolve_round()
+
+
+func _on_opponent_attack_received(p_opponent_attack) -> void:
+	opponent_attack = p_opponent_attack
+	if player_attack > 0:
+		_resolve_round()
 
 
 func _ready() -> void:
-	player.lost.connect(_on_game_over)
-	opponent.lost.connect(_on_game_over)
-	if OS.is_debug_build():
-		var args := OS.get_cmdline_args()
-		if args.has("server"):
-			var peer = ENetMultiplayerPeer.new()
-			peer.create_server(12345)
-			multiplayer.multiplayer_peer = peer
-		elif args.has("client"):
-			var peer = ENetMultiplayerPeer.new()
-			peer.create_client("127.0.0.1", 12345)
-			multiplayer.multiplayer_peer = peer
+	# These are needed to initialize a modified exported value at startup.
+	# This isn't a problem in the editor, but during runtime startup,
+	# the game signals are emitted before they are connected below
+	%Hud.player_life.set_health(game.player_health)
+	%Hud.opponent_life.set_health(game.opponent_health)
+	
+	# Note: these signals are not emitted when damage is taken. They are
+	# primarily used to reflect health changes due to modifying export values
+	game.player_health_changed.connect(%Hud.player_life.set_health)
+	game.opponent_health_changed.connect(%Hud.opponent_life.set_health)
+
+func _resolve_round() -> void:
+	var result := game.resolve_round(player_attack, opponent_attack)
+	if result is Game.RoundWin:
+		_resolve_round_win(result)
+	elif result is Game.RoundTie:
+		_resolve_round_tie(result)
+	player_attack = 0
+	opponent_attack = 0
 
 
-func _on_attack_selection_attack_selected(power: int) -> void:
-	%AttackSelection.hide()
-	_receive_attack.rpc(power)
-	if stored_attack > 0:
-		_resolve_round(power, stored_attack)
+func _resolve_round_win(result: Game.RoundWin) -> void:
+	var life_display: LifeDisplay
+	var new_health: int
+	if result.player_won:
+		life_display = %Hud.opponent_life
+		new_health = game.opponent_health
 	else:
-		stored_attack = power
+		life_display = %Hud.player_life
+		new_health = game.player_health
+	if result.is_one_up:
+		life_display.take_damage(result.loser_old_health - (result.value - 1))
+		await get_tree().create_timer(0.5).timeout
+	life_display.take_damage(new_health)
 
 
-@rpc("any_peer")
-func _receive_attack(power: int) -> void:
-	if stored_attack > 0:
-		_resolve_round(stored_attack, power)
-	else:
-		stored_attack = power
+func _resolve_round_tie(result: Game.RoundTie) -> void:
+	pass
 
 
-func _resolve_round(player_attack: int, opponent_attack: int) -> void:
-	if player_attack == opponent_attack:
-		return
-	var player_attack_bigger := player_attack > opponent_attack
-	var bigger_by_one := absi(player_attack - opponent_attack) == 1
-	if player_attack_bigger == bigger_by_one:
-		opponent.health -= player_attack
-	else:
-		player.health -= opponent_attack
-	stored_attack = 0
-	%AttackSelection.show()
-
-
-func _on_game_over() -> void:
-	%GameOverMenu.show()
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed:
+		var number := int(event.as_text_keycode())
+		if player_attack == 0:
+			_on_player_attack_received(number)
+		else:
+			_on_opponent_attack_received(number)

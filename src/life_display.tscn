@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://ukbyant3wy38"]
+
+[ext_resource type="Script" uid="uid://b6ci4bykltvm8" path="res://src/life_display.gd" id="1_ltlnr"]
+[ext_resource type="PackedScene" uid="uid://b7e3klx34ilh7" path="res://src/healthbar.tscn" id="2_ia76q"]
+
+[node name="LifeDisplay" type="VBoxContainer" unique_id=1484502095]
+custom_minimum_size = Vector2(256, 0)
+offset_right = 19.0
+offset_bottom = 45.0
+script = ExtResource("1_ltlnr")
+
+[node name="Healthbar" parent="." unique_id=1663006684 instance=ExtResource("2_ia76q")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="NameAndHealth" type="HBoxContainer" parent="." unique_id=256207910]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PlayerName" type="Label" parent="NameAndHealth" unique_id=1368970783]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="NameAndHealth" unique_id=677519953]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HealthValue" type="Label" parent="NameAndHealth" unique_id=426206822]
+unique_name_in_owner = true
+layout_mode = 2
+text = "20"

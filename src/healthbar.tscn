@@ -8,7 +8,6 @@
 offset_right = 256.0
 offset_bottom = 24.0
 script = ExtResource("1_btrm6")
-side = 1
 
 [node name="Border" type="NinePatchRect" parent="." unique_id=402304718]
 layout_mode = 2
@@ -28,7 +27,9 @@ theme_override_constants/margin_bottom = 4
 [node name="DamageBar" type="TextureProgressBar" parent="Bars" unique_id=1847683308]
 unique_name_in_owner = true
 layout_mode = 2
+max_value = 20.0
 step = 0.0
+value = 20.0
 nine_patch_stretch = true
 stretch_margin_left = 5
 stretch_margin_top = 5
@@ -40,11 +41,12 @@ tint_progress = Color(0.6745098, 0.19607843, 0.19607843, 1)
 [node name="HealthBar" type="TextureProgressBar" parent="Bars" unique_id=1778133720]
 unique_name_in_owner = true
 layout_mode = 2
+max_value = 20.0
+value = 20.0
 nine_patch_stretch = true
 stretch_margin_left = 5
 stretch_margin_top = 5
 stretch_margin_right = 5
 stretch_margin_bottom = 5
 texture_progress = ExtResource("2_k37sb")
-tint_over = Color(0.79607844, 0.85882354, 0.9882353, 1)
 tint_progress = Color(0.41568628, 0.74509805, 0.1882353, 1)
