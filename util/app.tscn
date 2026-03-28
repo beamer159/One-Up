@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://dhnv4tcfyftp1"]
+
+[ext_resource type="Script" uid="uid://dvlv7sn0uchow" path="res://app.gd" id="1_j6dmo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6dmo"]
+bg_color = Color(0, 0.54509807, 0, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[node name="App" type="VBoxContainer" unique_id=31297885]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+alignment = 1
+script = ExtResource("1_j6dmo")
+
+[node name="Confirmation" type="PanelContainer" parent="." unique_id=469569127]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_j6dmo")
+
+[node name="Margins" type="MarginContainer" parent="Confirmation" unique_id=938367895]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="ConfirmMessage" type="Label" parent="Confirmation/Margins" unique_id=1205335008]
+layout_mode = 2
+text = "Copied!"
+horizontal_alignment = 1
+
+[node name="Instructions" type="Label" parent="." unique_id=644749425]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Drag files here"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="." unique_id=855142376]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
