@@ -3,27 +3,35 @@ class_name Game extends Resource
 
 
 @abstract class RoundResult:
-	var value: int
+	pass
+
+
+class RoundTie extends RoundResult:
+	var attack: int
 	
-	func _init(p_value: int) -> void:
-		value = p_value
+	func _init(p_attack: int) -> void:
+		attack = p_attack
 
 
 class RoundWin extends RoundResult:
 	var player_won: bool
-	var is_one_up: bool
-	var loser_old_health: int
+	var new_health: int:
+		set(value):
+			new_health = maxi(0, value)
 	
-	func _init(p_value: int, p_player_won: bool, p_is_one_up: bool, p_loser_old_health) -> void:
-		super(p_value)
+	func _init(p_player_won: bool, p_new_health: int) -> void:
 		player_won = p_player_won
-		is_one_up = p_is_one_up
-		loser_old_health = p_loser_old_health
+		new_health = p_new_health
 
 
-class RoundTie extends RoundResult:
-	func _init(p_value: int) -> void:
-		super(p_value)
+class RoundOneUp extends RoundWin:
+	var intermediate_health: int:
+		set(value):
+			intermediate_health = maxi(0, value)
+	
+	func _init(player_won: bool, new_health: int, p_intermediate_health: int) -> void:
+		super(player_won, new_health)
+		intermediate_health = p_intermediate_health
 
 
 var min_attack := 1
@@ -55,14 +63,13 @@ func resolve_round(player_attack: int, opponent_attack: int) -> RoundResult:
 	assert(opponent_attack >= min_attack and opponent_attack <= 12, "opponent_attack out of range")
 	var result := _determine_result(player_attack, opponent_attack)
 	if result is RoundWin:
-		var damage = 2 * result.value - 1 if result.is_one_up else result.value
 		if result.player_won:
-			_opponent_health -= damage
+			_opponent_health = result.new_health
 		else:
-			_player_health -= damage
+			_player_health = result.new_health
 		min_attack = 1
 	elif result is RoundTie:
-		min_attack = mini(10, result.value)
+		min_attack = mini(10, result.attack)
 	return result
 
 
@@ -72,15 +79,17 @@ func _determine_result(player_attack: int, opponent_attack: int) -> RoundResult:
 	var is_player_attack_bigger := player_attack > opponent_attack
 	var is_one_up := absi(player_attack - opponent_attack) == 1
 	var player_won := is_player_attack_bigger == is_one_up
-	var winning_attack: int
-	var loser_health: int
-	if player_won:
-		winning_attack = player_attack
-		loser_health = opponent_health
+	var winning_attack := player_attack if player_won else opponent_attack
+	var starting_health := opponent_health if player_won else player_health
+	# Health calculations below could be negative.
+	# This should be resolved in the results' health setters.
+	if is_one_up:
+		var intermediate_health := starting_health - (winning_attack - 1)
+		var new_health := intermediate_health - winning_attack
+		return RoundOneUp.new(player_won, new_health, intermediate_health)
 	else:
-		winning_attack = opponent_attack
-		loser_health = player_health
-	return RoundWin.new(winning_attack, player_won, is_one_up, loser_health)
+		var new_health := starting_health - winning_attack
+		return RoundWin.new(player_won, new_health)
 
 
 func is_over() -> bool:
