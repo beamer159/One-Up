@@ -29,8 +29,8 @@ class RoundOneUp extends RoundWin:
 		set(value):
 			intermediate_health = maxi(0, value)
 	
-	func _init(player_won: bool, new_health: int, p_intermediate_health: int) -> void:
-		super(player_won, new_health)
+	func _init(p_player_won: bool, p_new_health: int, p_intermediate_health: int) -> void:
+		super(p_player_won, p_new_health)
 		intermediate_health = p_intermediate_health
 
 

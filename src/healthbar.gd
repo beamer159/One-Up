@@ -16,6 +16,8 @@ func _ready() -> void:
 
 func take_damage(new_health: int) -> void:
 	assert(new_health <= %HealthBar.value, "Damage cannot increase health")
+	if new_health == %HealthBar.value:
+		return
 	%HealthBar.value = new_health
 	var damage = %DamageBar.value - %HealthBar.value
 	if tween:

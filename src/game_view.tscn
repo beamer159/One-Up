@@ -3,14 +3,68 @@
 [ext_resource type="Script" uid="uid://rw7xrl7muxl6" path="res://src/game_view.gd" id="1_57lcu"]
 [ext_resource type="PackedScene" uid="uid://cmoltbj84cng8" path="res://src/hud.tscn" id="2_06jj8"]
 [ext_resource type="Script" uid="uid://csj5w7fljrurh" path="res://src/game.gd" id="2_t7661"]
+[ext_resource type="PackedScene" uid="uid://d10bkbq86h28s" path="res://src/attack_selection.tscn" id="4_b0pdc"]
+[ext_resource type="Texture2D" uid="uid://c724ucjs72tb0" path="res://images/power_sheet.png" id="5_57lcu"]
 
 [sub_resource type="Resource" id="Resource_b0pdc"]
 script = ExtResource("2_t7661")
 metadata/_custom_type_script = "uid://csj5w7fljrurh"
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvfps"]
+atlas = ExtResource("5_57lcu")
+region = Rect2(0, 0, 64, 64)
+
 [node name="Game" type="Node" unique_id=178584256]
 script = ExtResource("1_57lcu")
 game = SubResource("Resource_b0pdc")
 
-[node name="Hud" parent="." unique_id=236357532 instance=ExtResource("2_06jj8")]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1646787872]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Hud" parent="MarginContainer" unique_id=236357532 instance=ExtResource("2_06jj8")]
 unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="CenteredAttackSelection" type="CenterContainer" parent="." unique_id=1855122362]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="AttackSelection" parent="CenteredAttackSelection" unique_id=647049560 instance=ExtResource("4_b0pdc")]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenteredAttackSelection" unique_id=1537475766]
+visible = false
+layout_mode = 2
+texture = SubResource("AtlasTexture_jvfps")
+
+[node name="PlayerAttack" type="Sprite2D" parent="." unique_id=689297417]
+unique_name_in_owner = true
+position = Vector2(320, 180)
+scale = Vector2(1e-05, 3)
+texture = ExtResource("5_57lcu")
+hframes = 4
+vframes = 4
+
+[node name="OpponentAttack" type="Sprite2D" parent="." unique_id=926555857]
+unique_name_in_owner = true
+position = Vector2(704, 180)
+scale = Vector2(2, 2)
+texture = ExtResource("5_57lcu")
+hframes = 4
+vframes = 4
+
+[connection signal="attack_selected" from="CenteredAttackSelection/AttackSelection" to="." method="_on_player_attack_received"]

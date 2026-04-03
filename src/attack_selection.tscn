@@ -2,73 +2,78 @@
 
 [ext_resource type="Script" uid="uid://d13hluordfafp" path="res://src/attack_selection.gd" id="1_p77s7"]
 
-[node name="AttackSelection" type="GridContainer" unique_id=579983540]
-offset_right = 40.0
-offset_bottom = 40.0
-columns = 4
+[sub_resource type="Theme" id="Theme_tuv64"]
+
+[sub_resource type="Theme" id="Theme_732r5"]
+default_font_size = 24
+
+[node name="AttackSelection" type="VBoxContainer" unique_id=647049560]
+offset_right = 140.0
+offset_bottom = 153.0
+theme = SubResource("Theme_tuv64")
+theme_override_constants/separation = 12
 script = ExtResource("1_p77s7")
 
-[node name="Attack1" type="Button" parent="." unique_id=905883445]
+[node name="AttackLabel" type="Label" parent="." unique_id=1195430945]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Attack"
+horizontal_alignment = 1
+
+[node name="Attacks" type="GridContainer" parent="." unique_id=579983540]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_732r5")
+columns = 4
+
+[node name="Attack1" type="Button" parent="Attacks" unique_id=905883445]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 text = "1"
 
-[node name="Attack2" type="Button" parent="." unique_id=2091006336]
+[node name="Attack2" type="Button" parent="Attacks" unique_id=2091006336]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 text = "2"
 
-[node name="Attack3" type="Button" parent="." unique_id=1880004441]
+[node name="Attack3" type="Button" parent="Attacks" unique_id=1880004441]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 text = "3"
 
-[node name="Attack4" type="Button" parent="." unique_id=1168755756]
+[node name="Attack4" type="Button" parent="Attacks" unique_id=1168755756]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 text = "4"
 
-[node name="Attack5" type="Button" parent="." unique_id=1117619518]
+[node name="Attack5" type="Button" parent="Attacks" unique_id=1117619518]
 layout_mode = 2
 text = "5"
 
-[node name="Attack6" type="Button" parent="." unique_id=684852644]
+[node name="Attack6" type="Button" parent="Attacks" unique_id=684852644]
 layout_mode = 2
 text = "6"
 
-[node name="Attack7" type="Button" parent="." unique_id=132218908]
+[node name="Attack7" type="Button" parent="Attacks" unique_id=132218908]
 layout_mode = 2
 text = "7"
 
-[node name="Attack8" type="Button" parent="." unique_id=1183901355]
+[node name="Attack8" type="Button" parent="Attacks" unique_id=1183901355]
 layout_mode = 2
 text = "8"
 
-[node name="Attack9" type="Button" parent="." unique_id=1007927763]
+[node name="Attack9" type="Button" parent="Attacks" unique_id=1007927763]
 layout_mode = 2
 text = "9"
 
-[node name="Attack10" type="Button" parent="." unique_id=1460214043]
+[node name="Attack10" type="Button" parent="Attacks" unique_id=1460214043]
 layout_mode = 2
 text = "10"
 
-[node name="Attack11" type="Button" parent="." unique_id=542628300]
+[node name="Attack11" type="Button" parent="Attacks" unique_id=542628300]
 layout_mode = 2
 text = "11"
 
-[node name="Attack12" type="Button" parent="." unique_id=1075326270]
+[node name="Attack12" type="Button" parent="Attacks" unique_id=1075326270]
 layout_mode = 2
 text = "12"
-
-[connection signal="pressed" from="Attack1" to="." method="_on_attack_selected" binds= [1]]
-[connection signal="pressed" from="Attack2" to="." method="_on_attack_selected" binds= [2]]
-[connection signal="pressed" from="Attack3" to="." method="_on_attack_selected" binds= [3]]
-[connection signal="pressed" from="Attack4" to="." method="_on_attack_selected" binds= [4]]
-[connection signal="pressed" from="Attack5" to="." method="_on_attack_selected" binds= [5]]
-[connection signal="pressed" from="Attack6" to="." method="_on_attack_selected" binds= [6]]
-[connection signal="pressed" from="Attack7" to="." method="_on_attack_selected" binds= [7]]
-[connection signal="pressed" from="Attack8" to="." method="_on_attack_selected" binds= [8]]
-[connection signal="pressed" from="Attack9" to="." method="_on_attack_selected" binds= [9]]
-[connection signal="pressed" from="Attack10" to="." method="_on_attack_selected" binds= [10]]
-[connection signal="pressed" from="Attack11" to="." method="_on_attack_selected" binds= [11]]
-[connection signal="pressed" from="Attack12" to="." method="_on_attack_selected" binds= [12]]

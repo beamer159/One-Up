@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://b6ci4bykltvm8" path="res://src/life_display.gd" id="1_ltlnr"]
 [ext_resource type="PackedScene" uid="uid://b7e3klx34ilh7" path="res://src/healthbar.tscn" id="2_ia76q"]
 
+[sub_resource type="Theme" id="Theme_ltlnr"]
+default_font_size = 24
+
 [node name="LifeDisplay" type="VBoxContainer" unique_id=1484502095]
 custom_minimum_size = Vector2(256, 0)
 offset_right = 19.0
@@ -17,6 +20,7 @@ size_flags_vertical = 3
 [node name="NameAndHealth" type="HBoxContainer" parent="." unique_id=256207910]
 unique_name_in_owner = true
 layout_mode = 2
+theme = SubResource("Theme_ltlnr")
 
 [node name="PlayerName" type="Label" parent="NameAndHealth" unique_id=1368970783]
 unique_name_in_owner = true
